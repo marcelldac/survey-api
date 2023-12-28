@@ -32,7 +32,7 @@ export class SurveysController {
 
   public update = (req: Request, res: Response) => {
     const { id } = req.params;
-    const { title } = req.body;
+    const { title }: Data = req.body;
     try {
       this.surveyService.updateData(data, id, title);
       return res.status(200).json(data);
