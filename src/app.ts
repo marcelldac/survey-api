@@ -4,4 +4,4 @@ const PORT: number = parseInt(process.env.PORT!) || 8000;
 
 const api = new Api();
 
-api.listen(PORT);
+api.start(PORT);

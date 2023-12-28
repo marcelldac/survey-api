@@ -22,9 +22,14 @@ export class Api {
     this.app.delete("/surveys/:id", this.surveyController.remove);
   }
 
-  public listen(port: number) {
+  private listen(port: number) {
     this.app.listen(port, () => {
       console.log(`App running on ${port}`);
     });
+  }
+
+  public start(port: number) {
+    this.listen(port);
+    return this;
   }
 }
