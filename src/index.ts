@@ -3,6 +3,7 @@ import { SurveysController } from "./controllers/surveys";
 
 export class Api {
   private app: Express;
+  private surveyController = new SurveysController();
 
   constructor() {
     this.app = express();
@@ -15,10 +16,10 @@ export class Api {
   }
 
   private setupRoutes() {
-    this.app.get("/surveys", new SurveysController().read);
-    this.app.post("/surveys", new SurveysController().create);
-    this.app.put("/surveys/:id", new SurveysController().update);
-    this.app.delete("/surveys/:id", new SurveysController().remove);
+    this.app.get("/surveys", this.surveyController.read);
+    this.app.post("/surveys", this.surveyController.create);
+    this.app.put("/surveys/:id", this.surveyController.update);
+    this.app.delete("/surveys/:id", this.surveyController.remove);
   }
 
   public listen(port: number) {

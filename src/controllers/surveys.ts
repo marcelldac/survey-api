@@ -6,6 +6,8 @@ import { SurveyService } from "../services/surveys";
 let data: Data[] = [];
 
 export class SurveysController {
+  private surveyService = new SurveyService();
+
   public read = (req: Request, res: Response) => {
     try {
       return res.status(200).json(data);
@@ -20,7 +22,7 @@ export class SurveysController {
     const { title }: Data = req.body;
 
     try {
-      new SurveyService().createData(data, id, title);
+      this.surveyService.createData(data, id, title);
       return res.status(201).json(data);
     } catch (error) {
       console.error(error);
@@ -32,7 +34,7 @@ export class SurveysController {
     const { id } = req.params;
     const { title } = req.body;
     try {
-      new SurveyService().updateData(data, id, title);
+      this.surveyService.updateData(data, id, title);
       return res.status(200).json(data);
     } catch (error) {
       console.error(error);
@@ -43,7 +45,7 @@ export class SurveysController {
   public remove = (req: Request, res: Response) => {
     const { id } = req.params;
     try {
-      new SurveyService().removeData(data, id);
+      this.surveyService.removeData(data, id);
       return res.status(200).json(data);
     } catch (error) {
       console.error(error);
