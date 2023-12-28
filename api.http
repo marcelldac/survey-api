@@ -1,0 +1,19 @@
+@api_dev_url = http://localhost:8000
+
+GET {{api_dev_url}}/surveys
+###
+POST {{api_dev_url}}/surveys
+Content-Type: application/json
+
+{
+    "title":"Marcell"
+}
+###
+PUT {{api_dev_url}}/surveys/d9503a89-f3a9-41eb-89a4-efcefe443f80
+Content-Type: application/json
+
+{
+    "title":"Natália"
+}
+###
+DELETE {{api_dev_url}}/surveys/aa1b378f-66d2-4102-a5b7-f72984dd1df7
