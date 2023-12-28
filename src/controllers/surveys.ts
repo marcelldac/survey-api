@@ -17,6 +17,7 @@ const read = (req: Request, res: Response) => {
 const create = (req: Request, res: Response) => {
   const id: string = randomUUID();
   const { title }: Data = req.body;
+
   try {
     surveysService.createData(data, id, title);
     return res.status(201).json(data);
