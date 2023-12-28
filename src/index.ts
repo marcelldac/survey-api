@@ -3,7 +3,7 @@ import { SurveysController } from "./controllers/surveys";
 
 export class Api {
   private app: Express;
-  private surveyController = new SurveysController();
+  private surveyController: SurveysController = new SurveysController();
 
   constructor() {
     this.app = express();

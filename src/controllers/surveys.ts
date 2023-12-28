@@ -6,7 +6,7 @@ import { SurveyService } from "../services/surveys";
 let data: Data[] = [];
 
 export class SurveysController {
-  private surveyService = new SurveyService();
+  private surveyService: SurveyService = new SurveyService();
 
   public read = (req: Request, res: Response) => {
     try {
