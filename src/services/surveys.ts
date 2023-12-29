@@ -1,31 +1,31 @@
-import { emptyDataError } from "../errors";
-import { Data } from "../utils/types";
+import { emptySurveyError } from "../errors";
+import { Survey } from "../utils/types";
 
-type DataIndex = { dataIndex: number };
+type SurveyIndex = { SurveyIndex: number };
 
 export class SurveyService {
-  private findDataIndex = (data: Data[], id: string): DataIndex => {
-    const EMPTY_DATA: number = -1;
-    const dataIndex = data.findIndex((element) => element.id === id);
-    if (dataIndex === EMPTY_DATA) emptyDataError();
-    return { dataIndex };
+  private findSurveyIndex = (Survey: Survey[], id: string): SurveyIndex => {
+    const EMPTY_Survey: number = -1;
+    const SurveyIndex = Survey.findIndex((element) => element.id === id);
+    if (SurveyIndex === EMPTY_Survey) emptySurveyError();
+    return { SurveyIndex };
   };
 
-  public createData = (data: Data[], id: string, title: string): void => {
-    const payload: Data = {
+  public createSurvey = (Survey: Survey[], id: string, title: string): void => {
+    const payload: Survey = {
       id,
       title,
     };
-    data.push(payload);
+    Survey.push(payload);
   };
 
-  public updateData = (data: Data[], id: string, title: string): void => {
-    const { dataIndex } = this.findDataIndex(data, id);
-    data[dataIndex].title = title;
+  public updateSurvey = (Survey: Survey[], id: string, title: string): void => {
+    const { SurveyIndex } = this.findSurveyIndex(Survey, id);
+    Survey[SurveyIndex].title = title;
   };
 
-  public removeData = (data: Data[], id: string): void => {
-    const { dataIndex } = this.findDataIndex(data, id);
-    data.splice(dataIndex, 1);
+  public removeSurvey = (Survey: Survey[], id: string): void => {
+    const { SurveyIndex } = this.findSurveyIndex(Survey, id);
+    Survey.splice(SurveyIndex, 1);
   };
 }
