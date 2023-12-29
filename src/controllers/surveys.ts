@@ -13,20 +13,19 @@ export class SurveysController {
       return res.status(200).json(data);
     } catch (error) {
       console.error(error);
-      return res.sendStatus(500);
+      return res.status(500).json(error);
     }
   };
 
   public create = (req: Request, res: Response) => {
     const id: string = randomUUID();
     const { title }: Data = req.body;
-
     try {
       this.surveyService.createData(data, id, title);
       return res.status(201).json(data);
     } catch (error) {
       console.error(error);
-      return res.sendStatus(500);
+      return res.status(500).json(error);
     }
   };
 
@@ -38,7 +37,7 @@ export class SurveysController {
       return res.status(200).json(data);
     } catch (error) {
       console.error(error);
-      return res.sendStatus(500);
+      return res.status(500).json(error);
     }
   };
 
@@ -49,7 +48,7 @@ export class SurveysController {
       return res.status(200).json(data);
     } catch (error) {
       console.error(error);
-      return res.sendStatus(500);
+      return res.status(500).json(error);
     }
   };
 }
