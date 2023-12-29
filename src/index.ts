@@ -1,16 +1,35 @@
 import express, { Express } from "express";
-import surveysController from "./controllers/surveys";
+import { SurveysController } from "./controllers/surveys";
 
-const app: Express = express();
-const PORT: number = parseInt(process.env.PORT!) || 8000;
+export class Api {
+  private app: Express;
+  private surveyController: SurveysController = new SurveysController();
 
-app.use(express.json());
+  constructor() {
+    this.app = express();
+    this.setupMiddewares();
+    this.setupRoutes();
+  }
 
-app.get("/surveys", surveysController.read);
-app.post("/surveys", surveysController.create);
-app.put("/surveys/:id", surveysController.update);
-app.delete("/surveys/:id", surveysController.remove);
+  private setupMiddewares() {
+    this.app.use(express.json());
+  }
 
-app.listen(PORT, () => {
-  console.log(`App running on ${PORT}`);
-});
+  private setupRoutes() {
+    this.app.get("/surveys", this.surveyController.read);
+    this.app.post("/surveys", this.surveyController.create);
+    this.app.put("/surveys/:id", this.surveyController.update);
+    this.app.delete("/surveys/:id", this.surveyController.remove);
+  }
+
+  private listen(port: number) {
+    this.app.listen(port, () => {
+      console.log(`App running on ${port}`);
+    });
+  }
+
+  public start(port: number) {
+    this.listen(port);
+    return this;
+  }
+}
